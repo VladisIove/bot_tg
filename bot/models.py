@@ -7,7 +7,7 @@ from .validators import state_validator
 
 
 class TelUser(models.Model):
-	tel_id = models.PositiveIntegerField()
+	tel_id = models.PositiveIntegerField(unique=True)
 	state = models.CharField(max_length=250, default=None)
 
 	def __str__(self):
@@ -20,3 +20,4 @@ class CustomBot(telebot.TeleBot):
 	def register_handler_by_name(self, state=None):
 		if state:
 			self.message_handler(func=state_validator(state))
+
