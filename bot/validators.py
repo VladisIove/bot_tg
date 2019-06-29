@@ -6,7 +6,7 @@ def state_validator(state):
 		user = TGUser.objects.filter(tg_id=message.from_user.id).first()
 
 		if not user:
-			raise TypeError('State validator should`t ran for non existing user message')
+			return False
 
 		return user.state == state
 	return wrapper

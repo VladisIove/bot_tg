@@ -16,7 +16,7 @@ def process_state_first_command(message):
 	if not user:
 		user = TGUser(tg_id=user_id)
 
-	user.state='start'
+	user.state = 'start'
 	user.save()
 
 	bot.send_message(message.chat.id, 'Start!! Write your fucking name!')
