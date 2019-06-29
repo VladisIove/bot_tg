@@ -1,12 +1,12 @@
+from bot.models import TGUser
 
-def state_validator(func):
-	def decorator(handler):
 
-		from .models import TelUser
-		user = TelUser.objects.filter(tel_id=1).first()
+def state_validator(state):
+	def wrapper(message):
+		user = TGUser.objects.filter(tg_id=message.from_user.id).first()
 
 		if not user:
-			user = TelUser.objects.create(tel_id=1, state=state)
+			raise TypeError('State validator should`t ran for non existing user message')
 
-		return handler
-	return decorator
+		return user.state == state
+	return wrapper
