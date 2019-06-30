@@ -7,3 +7,12 @@ class TGUser(models.Model):
 
 	def __str__(self):
 		return 'User tel_id: {} , with state: {}'.format(self.tg_id, self.state)
+
+
+class Order(models.Model):
+	user = models.ForeignKey('TGUser', on_delete = models.CASCADE)
+	industry = models.TextField(default='Empty')
+	task_description = models.TextField(default='Empty')
+
+	def __str__(self):
+		return 'User: {}'.format(self.user)

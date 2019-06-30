@@ -9,6 +9,5 @@ class CustomBot(telebot.TeleBot):
         def decorator(handler):
             if not state:
                 raise TypeError('State should`t be None!')
-
             self.message_handler(func=state_validator(state))(handler)
         return decorator
