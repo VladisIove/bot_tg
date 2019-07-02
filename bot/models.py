@@ -16,3 +16,23 @@ class Order(models.Model):
 
 	def __str__(self):
 		return 'User: {}'.format(self.user)
+
+
+
+class Referense(models.Model):
+	Vlad = 'V'
+	Demian = 'D'
+	Empty = 'E'
+	Andrey = 'A'
+
+	REFERS = [
+	(Empty, 'Empty'),
+	(Vlad, 'Vlad'),
+	(Demian, 'Demian'),
+	(Andrey, 'Andrey'),
+	]
+	user = models.ForeignKey('TGUser', on_delete=models.CASCADE)
+	refer = models.CharField(max_length=1, choices=REFERS, default=Empty)
+
+	def __str__(self):
+		return 'Refer: {}, user_id: {}'.format(self.refer, self.user)
