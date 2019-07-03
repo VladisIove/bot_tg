@@ -62,14 +62,13 @@ def process_start_command(message):
 
 	user.state = 'interesting'
 	user.save()
-	refer = ''
+	if 
+	refer = message.text[7:] if message.text[7:] else 'E'
 	try:
-		refer = message.text[7:]
-	except:
-		refer = 'E'
-
-	referense = Referense.objects.create(user=user, refer=refer)
-	referense.save()
+		referense = Referense.objects.get(user=user, refer=refer)
+	except Referense.DoesNotExist:
+		referense = Referense(user=user, refer=refer)
+		referense.save()
 	markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
 	markup.add('Продолжить','Не интересно')
 	bot.reply_to(message, 'Мы крутые типы, пилим ботов. Го дальше. не?', reply_markup = markup )
@@ -118,7 +117,7 @@ def process_activity_step(message):
 	order = Order.objects.create(user = user )
 	order.industry = message.text 
 	order.save()
-	bot.reply_to(message, 'Опишите вашу задачу')
+	bot.reply_to(message, 'Опишите вашу задачу, и до какого числа надо сделать бота')
 
 
 @bot.register_handler_by_state(state='order')	
