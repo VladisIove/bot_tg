@@ -1,6 +1,6 @@
 certifi==2019.6.16
 chardet==3.0.4
-Django==2.2.2
+Django==2.2.21
 idna==2.8
 pyTelegramBotAPI==3.6.6
 pytz==2019.1
